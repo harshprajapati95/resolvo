@@ -1,7 +1,11 @@
+import { useContext } from 'react'
 import { ArrowRight } from 'lucide-react'
 import Button from '../ui/Button'
+import { AccessContext } from '../../context/AccessContext'
 
 export default function CTABanner() {
+  const { openRequestAccess } = useContext(AccessContext)
+
   return (
     <section className="py-24 bg-gradient-subtle">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -22,10 +26,13 @@ export default function CTABanner() {
               Join hundreds of support teams already using Resolvo to hit 90%+ resolution rates — and finally give their agents breathing room.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="white" size="xl" href="/pricing">
-                Start Free Today
+              <button
+                onClick={openRequestAccess}
+                className="inline-flex items-center justify-center px-8 py-4 bg-white text-teal-700 font-semibold rounded-xl hover:bg-teal-50 active:scale-[0.98] transition-all duration-200 gap-2.5 shadow-sm"
+              >
+                Start Free Trial
                 <ArrowRight className="w-4 h-4" />
-              </Button>
+              </button>
               <Button variant="white-outline" size="xl" href="/product">
                 See How It Works
               </Button>

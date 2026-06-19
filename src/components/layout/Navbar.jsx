@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Menu, X, Zap } from 'lucide-react'
+import { AccessContext } from '../../context/AccessContext'
 
 const navLinks = [
   { label: 'Product', href: '/product' },
@@ -12,6 +13,12 @@ const navLinks = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const location = useLocation()
+  const { openRequestAccess } = useContext(AccessContext)
+
+  const handleRequestAccess = () => {
+    openRequestAccess()
+    setIsOpen(false)
+  }
 
   return (
     <header className="fixed top-0 inset-x-0 z-50 transition-all duration-300 bg-white/90 backdrop-blur-md shadow-soft border-b border-gray-100">
@@ -47,18 +54,12 @@ export default function Navbar() {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-3">
-            <Link
-              to="/pricing"
-              className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
-            >
-              Sign in
-            </Link>
-            <Link
-              to="/pricing"
+            <button
+              onClick={openRequestAccess}
               className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold rounded-xl bg-teal-600 text-white hover:bg-teal-700 active:scale-[0.98] shadow-sm hover:shadow-md transition-all duration-200"
             >
-              Start Free
-            </Link>
+              Start Free Trial
+            </button>
           </div>
 
           {/* Mobile Hamburger */}
@@ -96,24 +97,35 @@ export default function Navbar() {
               </Link>
             )
           })}
-          <div className="pt-3 pb-2 flex flex-col gap-2">
-            <Link
-              to="/pricing"
-              onClick={() => setIsOpen(false)}
-              className="block px-4 py-3 rounded-xl text-sm font-medium text-gray-700 hover:bg-gray-50"
+          <div className="pt-3 pb-2">
+            <button
+              onClick={handleRequestAccess}
+              className="block w-full px-5 py-2.5 text-sm font-semibold rounded-xl bg-teal-600 text-white hover:bg-teal-700 active:scale-[0.98] shadow-sm hover:shadow-md transition-all duration-200 text-center"
             >
-              Sign in
-            </Link>
-            <Link
-              to="/pricing"
-              onClick={() => setIsOpen(false)}
-              className="block px-5 py-2.5 text-sm font-semibold rounded-xl bg-teal-600 text-white hover:bg-teal-700 active:scale-[0.98] shadow-sm hover:shadow-md transition-all duration-200 text-center"
-            >
-              Start Free
-            </Link>
+              Start Free Trial
+            </button>
           </div>
         </nav>
       </div>
     </header>
   )
 }
+//               to="/pricing"
+//               onClick={() => setIsOpen(false)}
+//               className="block px-4 py-3 rounded-xl text-sm font-medium text-gray-700 hover:bg-gray-50"
+//             >
+//               Sign in
+//             </Link>
+//             <Link
+//               to="/pricing"
+//               onClick={() => setIsOpen(false)}
+//               className="block px-5 py-2.5 text-sm font-semibold rounded-xl bg-teal-600 text-white hover:bg-teal-700 active:scale-[0.98] shadow-sm hover:shadow-md transition-all duration-200 text-center"
+//             >
+//               Start Free
+//             </Link>
+//           </div>
+//         </nav>
+//       </div>
+//     </header>
+//   )
+// }

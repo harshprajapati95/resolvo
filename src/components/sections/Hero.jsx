@@ -1,6 +1,8 @@
+import { useContext } from 'react'
 import { ArrowRight, CheckCircle2, Clock, Zap, MessageSquare, BarChart3, TrendingUp } from 'lucide-react'
 import Button from '../ui/Button'
 import Badge from '../ui/Badge'
+import { AccessContext } from '../../context/AccessContext'
 
 const mockTickets = [
   { id: 1, user: 'Alex R.', subject: 'How do I cancel my subscription?', status: 'resolved', time: '43s', avatar: 'AR', color: 'bg-violet-500' },
@@ -31,6 +33,8 @@ function TicketRow({ ticket }) {
 }
 
 export default function Hero() {
+  const { openRequestAccess } = useContext(AccessContext)
+
   return (
     <section className="relative min-h-screen flex items-center pt-16 overflow-hidden bg-gradient-subtle">
       {/* Background decorations */}
@@ -88,10 +92,13 @@ export default function Hero() {
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-3">
-              <Button variant="primary" size="xl" href="/pricing">
-                Start Free
+              <button
+                onClick={openRequestAccess}
+                className="inline-flex items-center justify-center px-8 py-4 bg-teal-600 text-white font-semibold rounded-xl hover:bg-teal-700 active:scale-[0.98] shadow-sm hover:shadow-md transition-all duration-200 gap-2.5"
+              >
+                Start Free Trial
                 <ArrowRight className="w-4 h-4" />
-              </Button>
+              </button>
               <Button variant="secondary" size="xl" href="/product">
                 Book a Demo
               </Button>
