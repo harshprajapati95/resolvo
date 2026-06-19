@@ -25,11 +25,15 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 rounded-lg bg-gradient-brand flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
-              <Zap className="w-4 h-4 text-white" strokeWidth={2.5} />
-            </div>
-            <span className="text-xl font-bold text-gray-900 tracking-tight">Resolvo</span>
+          <Link to="/" className="flex items-center gap-3 group">
+            <img
+              src="/Resolvo Logo.png"
+              alt="Resolvo Logo"
+              className="h-10 w-auto object-contain"
+            />
+            <span className="text-xl font-bold text-gray-900 tracking-tight">
+              Resolvo
+            </span>
           </Link>
 
           {/* Desktop Nav */}
@@ -40,11 +44,10 @@ export default function Navbar() {
                 <Link
                   key={link.href}
                   to={link.href}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-150 ${
-                    active
-                      ? 'text-teal-700 bg-teal-50'
-                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
-                  }`}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-150 ${active
+                    ? 'text-teal-700 bg-teal-50'
+                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                    }`}
                 >
                   {link.label}
                 </Link>
@@ -77,9 +80,8 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-          isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
-        } bg-white border-b border-gray-100`}
+        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
+          } bg-white border-b border-gray-100`}
       >
         <nav className="px-4 py-4 space-y-1" aria-label="Mobile navigation">
           {navLinks.map((link) => {
@@ -89,9 +91,8 @@ export default function Navbar() {
                 key={link.href}
                 to={link.href}
                 onClick={() => setIsOpen(false)}
-                className={`block px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
-                  active ? 'text-teal-700 bg-teal-50' : 'text-gray-700 hover:bg-gray-50'
-                }`}
+                className={`block px-4 py-3 rounded-xl text-sm font-medium transition-colors ${active ? 'text-teal-700 bg-teal-50' : 'text-gray-700 hover:bg-gray-50'
+                  }`}
               >
                 {link.label}
               </Link>
